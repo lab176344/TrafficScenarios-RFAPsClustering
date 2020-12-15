@@ -1,0 +1,11 @@
+name: clustering_scenarios
+channels:
+  - defaults
+dependencies:
+  - python=3.6
+  - cudatoolkit=10.2
+  - pytorch
+  - spyder
+  - tensorflow
+  - ipywidgets
+prefix: C:\Users\balasubramanian\Anaconda3\envs\clustering_scenarios
