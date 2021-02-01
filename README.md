@@ -47,4 +47,4 @@ Step 3: Clustering -> ```python clustering_scenarios.py```
 ## Reference
 [1] The highD Dataset: A Drone Dataset of Naturalistic Vehicle Trajectories on German Highways for Validation of Highly Automated Driving Systems, Krajewski et al., ITSC 2018
 
-* Thanks to Kai Han for his AutoNovel repository https://github.com/k-han/AutoNovel, the implementation of RFAPs based clustering is based on that and extensions have been proposed.* 
+* Thanks to Kai Han for his AutoNovel repository https://github.com/k-han/AutoNovel, the implementation of RFAPs based clustering is based on that and extensions have been proposed. 
