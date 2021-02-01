@@ -38,11 +38,11 @@ The traffic scenarios are generated from the HighD Dataset [1]. 7 common highway
 
 Please fill in the forms to request access to the HighD Data from https://www.highd-dataset.com/. 
 
-Step 1:
+Step 1: Self-Supervised Initialisation -> ```python selfsupervised_learning_scenario.py```
 
-Step 2: 
+Step 2: Classification -> ```python supervised_learning_scenarios.py```
 
-Step 3: 
+Step 3: Clustering -> ```python clustering_scenarios.py```
 
 ## Reference
 [1] The highD Dataset: A Drone Dataset of Naturalistic Vehicle Trajectories on German Highways for Validation of Highly Automated Driving Systems, Krajewski et al., ITSC 2018
