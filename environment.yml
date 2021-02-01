@@ -8,4 +8,3 @@ dependencies:
   - spyder
   - tensorflow
   - ipywidgets
-prefix: C:\Users\balasubramanian\Anaconda3\envs\clustering_scenarios
