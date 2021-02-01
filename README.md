@@ -36,7 +36,7 @@ The traffic scenarios are generated from the HighD Dataset [1]. 7 common highway
 
 ## Clustering<a name="EVT"></a>
 
-Please fill in the forms to request access to the HighD Data from https://www.highd-dataset.com/. 
+Please fill in the forms to request access to the HighD Data from https://www.highd-dataset.com/. The code for processing the data is available in https://github.com/lab176344/Traffic_Sceanrios-VoteBasedEVT. Process the data and place the .mat file in .data/datasets/Scenarios/ and use the name HighDScenarioClassV1_Train/Test/Val. Followed by that the scripts mentioned below can be run one after the other to cluster the scenarios.
 
 Step 1: Self-Supervised Initialisation -> ```python selfsupervised_learning_scenario.py```
 
