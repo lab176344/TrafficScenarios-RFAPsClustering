@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Aug 22 10:42:39 2020
 
-@author: carpc
-"""
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 import torch
