@@ -33,7 +33,6 @@ The traffic scenarios are generated from the HighD Dataset [1]. 7 common highway
 	- Leader - Cutout to left: The leader vehicle  makes a lane change from  the ego lane to the left lane of ego.
 	- Leader - Cutout to right: The leader vehicle  makes a lane change  from  the ego lane from the right lane of ego.
 	
-![plot](./data/description.png)
 
 ## Clustering<a name="EVT"></a>
 
