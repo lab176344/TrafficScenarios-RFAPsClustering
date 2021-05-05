@@ -71,18 +71,6 @@ class MyDataset(Dataset):
  
     def __len__(self):
         return len(self.images)
-    # def __getitem__(self, index):
-    #     x = self.images[index]
-    #     y = self.target[index]
-    #     shuffl = [0,3,4,7]
-    #     print('Data shape', x.shape)
-    #     rotated_imgs = self.generate_random_sequence(x, shuffl)
-    #     rotation_labels = torch.LongTensor(list(range(24)))
-    #     print(len(rotated_imgs))
-    #     return torch.cat(rotated_imgs,dim=0), rotation_labels
-
-    # def __len__(self):
-    #     return len(self.images)
 
 
 
@@ -127,40 +115,27 @@ class DataLoader(object):
         self.epoch_size = epoch_size if epoch_size is not None else len(dataset)
         self.batch_size = batch_size
         self.num_workers = num_workers
-        self.unsupervised = True
         self.transform = trans
     
 
     def get_iterator(self, epoch=0):
         rand_seed = epoch * self.epoch_size
         random.seed(rand_seed)
-        if self.unsupervised:
-            # if in unsupervised mode define a loader function that given the
-            # index of an image it returns the 4 rotated copies of the image
-            # plus the label of the rotation, i.e., 0 for 0 degrees rotation,
-            # 1 for 90 degrees, 2 for 180 degrees, and 3 for 270 degrees.
-            def _load_function(idx):
-                idx = idx % len(self.dataset)
-                img0, _ = self.dataset[idx]
-                x = [0,4,9]
-                rotated_imgs = generate_random_sequence(img0, x, self.transform)
-                rotation_labels = torch.LongTensor(list(range(6)))
-                return torch.stack(rotated_imgs, dim=0), rotation_labels
-            def _collate_fun(batch):
-                batch = default_collate(batch)
-                assert(len(batch)==2)
-                batch_size, shuffle, channels, height, width, depth  = batch[0].size()
-                batch[0] = batch[0].view([batch_size*shuffle, channels, height, width, depth])
-                batch[1] = batch[1].view([batch_size*shuffle])
-                return batch
-        else: # supervised mode
-            # if in supervised mode define a loader function that given the
-            # index of an image it returns the image and its categorical label
-            def _load_function(idx):
-                idx = idx % len(self.dataset)
-                img, categorical_label = self.dataset[idx]
-                return img, categorical_label
-            _collate_fun = default_collate        
+        def _load_function(idx):
+            idx = idx % len(self.dataset)
+            img0, _ = self.dataset[idx]
+            x = [0,3,6,9]
+            rotated_imgs = generate_random_sequence(img0, x, self.transform)
+            rotation_labels = torch.LongTensor(list(range(24)))
+            return torch.stack(rotated_imgs, dim=0), rotation_labels
+        def _collate_fun(batch):
+            batch = default_collate(batch)
+            assert(len(batch)==2)
+            batch_size, shuffle, channels, height, width, depth  = batch[0].size()
+            batch[0] = batch[0].view([batch_size*shuffle, channels, height, width, depth])
+            batch[1] = batch[1].view([batch_size*shuffle])
+            return batch
+      
 
         tnt_dataset = tnt.dataset.ListDataset(elem_list=range(self.epoch_size),
             load=_load_function)
