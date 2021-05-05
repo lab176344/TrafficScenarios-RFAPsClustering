@@ -19,17 +19,6 @@ from models.resnet3d import ResNet, BasicBlock
 import matplotlib.pyplot as plt
 
 
-def get_inplanes():
-    return [64, 128, 256, 512]
-
-def visualize_scenarios(data):
-    for k in range(2):
-        for i in range(3):
-            a = data[k,:,i,:,:]
-            aa = a.reshape(30,180)
-            stdName = 'check_'+str(k)+'_' +str(i)+'.pdf'
-            plt.imshow(aa)
-            plt.savefig(stdName)
 
 def train(epoch, model, device, dataloader, optimizer, exp_lr_scheduler, criterion, args):
     loss_record = AverageMeter()
