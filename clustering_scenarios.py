@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning) 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -24,17 +19,9 @@ import tkinter
 from models.resnet3d_finetune import ResNet, BasicBlock 
 from data.highD_loader import ScenarioLoader, ScenarioLoaderMix
 import torch.optim as optim
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning) 
+) 
 
-def visualize_scenarios(data):
-    for k in range(2):
-        for i in range(3):
-            a = data[k,:,i,:,:]
-            aa = a.reshape(30,180)
-            stdName = 'check_'+str(k)+'_' +str(i)+'.png'
-            plt.imshow(aa)
-            plt.savefig(stdName)
+
 
 def get_inplanes():
     return [64, 128, 256, 512]
@@ -53,9 +40,7 @@ def train(model, train_loader, labeled_eval_loader, unlabeled_eval_loader, args)
         tr_x = np.zeros((2400,512))
         tr_y = np.zeros((2400,))
         for batch_idx, ((x, x_bar),  label, idx) in enumerate(tqdm(train_loader)):
-            # visualize_scenarios(x)
-            mask_rf = label<args.num_labeled_classes
-            
+            mask_rf = label<args.num_labeled_classes          
             # Unknown
             Y_test = (label[~mask_rf]).detach()
             ulb_data = (x[~mask_rf]).detach()
@@ -95,11 +80,7 @@ def train(model, train_loader, labeled_eval_loader, unlabeled_eval_loader, args)
         D = pairwise_distances(rfap, metric="hamming")
         S_epoch = 1 - D          
        
-        kmeans = KMeans(n_clusters=3,n_init=20).fit(represen_x)         
-        y = kmeans.labels_
-        acc, nmi, ari = cluster_acc(train_y.astype(int), y.astype(int)), \
-            nmi_score(train_y, y), ari_score(train_y, y) 
-        print('K means acc {:.4f}, nmi {:.4f}, ari {:.4f}'.format(acc, nmi, ari))
+     
 
             
         for batch_idx, ((x, x_bar),  label, idx) in enumerate(tqdm(train_loader)):         
@@ -122,7 +103,6 @@ def train(model, train_loader, labeled_eval_loader, unlabeled_eval_loader, args)
             label[~mask_lb] = (output2[~mask_lb]).detach().max(1)[1] + args.num_labeled_classes
             loss_ce_add = w * criterion1(output1[~mask_lb], label[~mask_lb]) / args.rampup_coefficient *  args.increment_coefficient
         
-            #Lakshman
             x1, x2  = PairEnum(rank_feat)
             x1 = x1.cpu().data.numpy()
             x2 = x2.cpu().data.numpy()
@@ -189,7 +169,7 @@ def test(model, test_loader, args):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(
-            description='cluster',
+            description='RFAPCLuster',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--lr', type=float, default=0.1)
     parser.add_argument('--gamma', type=float, default=0.1)
