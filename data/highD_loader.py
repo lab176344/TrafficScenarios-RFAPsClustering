@@ -133,29 +133,20 @@ def ScenarioLoaderMix(root, batch_size, split='train',num_workers=2, aug='None',
 
     if aug==None:
         transform = transforms.Compose([
-        transforms.Resize((30, 180)),  # smaller edge to 128
+        transforms.Resize((30, 180)), 
         transforms.ToTensor(),
-        #binary_flip,
-        #transforms.Normalize((0.1307,), (0.3081,)),
         ])
     elif aug=='once':
         transform = transforms.Compose([
-        #transforms.RandomCrop((30,200)),
-        #transforms.RandomHorizontalFlip(),
-        # transforms.RandomRotation(degrees=(90, -90)),
         transforms.Resize((30, 180)),  # smaller edge to 128
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
-        #transforms.RandomErasing(),
         ])
     elif aug=='twice':
         transform = transforms.Compose([
-        #transforms.RandomCrop((30,200)),
-        #transforms.RandomHorizontalFlip(),
         transforms.Resize((30, 180)),  # smaller edge to 128
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
-        #transforms.RandomErasing(),
         ])   
 
     dataset_labeled = MyDataset(stuff_in=[0,3,6,9],mat_path=root, transform=transform, mode=split, target_list=labeled_list, aug=aug)
@@ -173,27 +164,18 @@ def ScenarioLoader(root, batch_size, split='train',aug='None', num_workers=2, sh
         transform = transforms.Compose([
         transforms.Resize((30, 180)),  # smaller edge to 128
         transforms.ToTensor(),
-        #binary_flip,
-        #transforms.Normalize((0.1307,), (0.3081,)),
         ])
     elif aug=='once':
         transform = transforms.Compose([
-        #transforms.RandomCrop((30,200)),
-        #transforms.RandomHorizontalFlip(),
-        # transforms.RandomRotation(degrees=(90, -90)),
         transforms.Resize((30, 180)),  # smaller edge to 128
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
-        #transforms.RandomErasing(),
         ])
     elif aug=='twice':
         transform = transforms.Compose([
-        #transforms.RandomCrop((30,200)),
-        #transforms.RandomHorizontalFlip(),
         transforms.Resize((30, 180)),  # smaller edge to 128
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
-        #transforms.RandomErasing(),
         ])
 
     dataset = MyDataset(stuff_in=[0,3,6,9],mat_path=root, transform=transform, mode=split, target_list=target_list, aug=aug)
