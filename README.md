@@ -8,6 +8,15 @@ The official code for the paper:
 - scipy (1.5.2)
 - numpy (0.19.0)
 - Pytorch (1.14)
+- UMAP
+
+
+## Custom Scikit learn Installation Instructions
+
+- Check the repo https://github.com/lab176344/scikit-THI for the custom scikit installation
+- Or download the wheel files from the link -- and install it with pip install 
+
+
 
 ## Table of Contents
 
