@@ -19,7 +19,7 @@ import tkinter
 from models.resnet3d_finetune import ResNet, BasicBlock 
 from data.highD_loader import ScenarioLoader, ScenarioLoaderMix
 import torch.optim as optim
-) 
+
 
 
 
