@@ -1,6 +1,3 @@
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
-warnings.filterwarnings("ignore")
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -11,20 +8,12 @@ from utils.util import cluster_acc, Identity, AverageMeter
 from tqdm import tqdm
 import numpy as np
 import os
-import umap
 import matplotlib.pyplot as plt
 from models.resnet3d_finetune import ResNet, BasicBlock 
-from data.highD_loader2_cleanv1_4_4 import MyDataset,ScenarioLoader
+from data.highD_loader import MyDataset,ScenarioLoader
 from torch import optim
 
-def visualize_scenarios(data):
-    for k in range(5):
-        for i in range(3):
-            a = data[k,:,i,:,:]
-            aa = a.reshape(30,180)
-            stdName = 'check_'+str(k)+'_' +str(i)+'.png'
-            plt.imshow(aa)
-            plt.savefig(stdName)  
+  
 def get_inplanes():
     return [64, 128, 256, 512]
 
@@ -62,14 +51,7 @@ def train(model, train_loader, labeled_eval_loader, args):
                 represen = represen.cpu().data.numpy()
                 represen_x[idx,:] =  represen
 
-        U = umap.UMAP(n_components = 2)
-        print('Shape_Extracted', represen_x.shape)
-        embedding2 = U.fit_transform(represen_x,)
-        fig, ax = plt.subplots(1, figsize=(14, 10))
 
-        plt.scatter(embedding2[:, 0], embedding2[:, 1], s= 5, c=train_y, cmap='Spectral')
-        savename= 'Check_'+str(epoch)+'.png'
-        plt.savefig(savename)
         for batch_idx, (x, label, idx) in enumerate(tqdm(train_loader)):
             #visualize_scenarios(x)
             x, label = x.to(device), label.to(device)
