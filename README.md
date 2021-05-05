@@ -8,7 +8,9 @@ The official code for the paper:
 - scipy (1.5.2)
 - numpy (0.19.0)
 - Pytorch (1.14)
-- UMAP
+- tkinter
+- tqdm
+- shutil
 
 
 ## Custom Scikit learn Installation Instructions
