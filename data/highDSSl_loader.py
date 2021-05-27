@@ -50,7 +50,7 @@ class MyDataset(Dataset):
             # fix seed, apply the sample `random transformation` for all frames in the clip 
             seed = random.random()
             for k in list_check:
-                frame = scenario[:,:,k]
+                frame = scenario[:,:,k]*255.0
                 random.seed(seed)
                 frame = Image.fromarray(frame.astype('uint8'))
                 frame = self.transforms_(frame) # tensor [C x H x W]
