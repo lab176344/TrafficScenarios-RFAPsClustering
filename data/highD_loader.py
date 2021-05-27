@@ -73,9 +73,7 @@ class MyDataset(Dataset):
             trans_clip1 = []
             trans_clip2 = []
             for k in range(4):
-                frame = x[:,:,k]
-                    #frame = frame.transpose()
-
+                frame = x[:,:,k]*255.0
                 random.seed(seed)
                 frame = Image.fromarray(frame.astype('uint8'))
                 frame = self.transform(frame) # tensor [C x H x W]
@@ -84,7 +82,7 @@ class MyDataset(Dataset):
                 
             seed = random.random()            
             for k in range(4):
-                frame = x[:,:,k]
+                frame = x[:,:,k]*255.0
                     #frame = frame.transpose()
 
                 random.seed(seed)
@@ -107,7 +105,7 @@ class MyDataset(Dataset):
                 seed = random.random()
                 trans_clip = []
                 for k in range(4):
-                    frame = x[:,:,k]
+                    frame = x[:,:,k]*255.0
                    # print('Frame',frame.shape)    
                     random.seed(seed)
                     frame = Image.fromarray(frame.astype('uint8'))
