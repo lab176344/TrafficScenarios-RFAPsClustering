@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Sep  9 09:04:18 2020
 
-@author: carpc
-"""
 import math
 from functools import partial
 
