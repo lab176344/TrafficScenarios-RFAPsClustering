@@ -1,3 +1,4 @@
+# This file is used from Han et al. (2020)
 import os
 import os.path
 import hashlib
