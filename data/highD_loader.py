@@ -136,13 +136,13 @@ def ScenarioLoaderMix(root, batch_size, split='train',num_workers=2, aug='None',
         ])
     elif aug=='once':
         transform = transforms.Compose([
-        transforms.Resize((30, 180)),  # smaller edge to 128
+        transforms.Resize((30, 180)),  
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
         ])
     elif aug=='twice':
         transform = transforms.Compose([
-        transforms.Resize((30, 180)),  # smaller edge to 128
+        transforms.Resize((30, 180)), 
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
         ])   
@@ -160,18 +160,18 @@ def ScenarioLoader(root, batch_size, split='train',aug='None', num_workers=2, sh
 
     if aug==None:
         transform = transforms.Compose([
-        transforms.Resize((30, 180)),  # smaller edge to 128
+        transforms.Resize((30, 180)), 
         transforms.ToTensor(),
         ])
     elif aug=='once':
         transform = transforms.Compose([
-        transforms.Resize((30, 180)),  # smaller edge to 128
+        transforms.Resize((30, 180)), 
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
         ])
     elif aug=='twice':
         transform = transforms.Compose([
-        transforms.Resize((30, 180)),  # smaller edge to 128
+        transforms.Resize((30, 180)), 
         transforms.RandomCrop((30,180)),
         transforms.ToTensor(),
         ])
