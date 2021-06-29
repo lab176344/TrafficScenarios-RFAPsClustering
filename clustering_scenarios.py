@@ -145,7 +145,6 @@ def train(model, train_loader, labeled_eval_loader, unlabeled_eval_loader, args)
         args.head='head2'
         acc = test(model, unlabeled_eval_loader, args)
         exp_lr_scheduler.step()
-        print('Current learning rate is {}'.format(get_lr(optimizer)))
 
 
 def test(model, test_loader, args):
