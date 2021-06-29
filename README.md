@@ -1,6 +1,6 @@
 # TrafficScenarios-RFAPsClustering
 
-The official code for the paper: 
+The official code for the paper: "Traffic Scenario Clustering by Iterative Optimisation of Self-Supervised Networks Using a Random Forest Activation Pattern Similarity" from Intelligent Vehichle Symposium 2021
 
 ## Dependencies
 - Python (>=3.6)
