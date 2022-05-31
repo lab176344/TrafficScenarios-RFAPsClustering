@@ -16,7 +16,6 @@ The official code for the paper: "Traffic Scenario Clustering by Iterative Optim
 ## Custom Scikit learn Installation Instructions
 
 - Check the repo https://github.com/lab176344/scikit-THI for the custom scikit installation
-- Or download the wheel files from the link (will be given) and install it with pip install 
 
 
 
